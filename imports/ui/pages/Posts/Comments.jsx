@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {withTracker} from 'meteor/react-meteor-data';
 import { AutoForm, LongTextField, SubmitField, ErrorsField } from 'uniforms-unstyled';
 import { Comments } from '/db';
+import { Users } from '/db';
 import CommentSchema from '/db/comments/schema';
 
 class CommentListReactive extends Component {
@@ -22,9 +23,15 @@ class CommentListReactive extends Component {
         Meteor.call('comment.create', comment, (err) => {
             if (err) {
                 return alert(err.reason);
+            } else {
+                this.form.reset();
+                alert('Comment added!')
             }
-            alert('Comment added!')
         });
+    };
+
+    canRemove = (userId) => {
+        return Meteor.userId() === userId || Meteor.userId() === this.props.postOwner;
     };
 
     render() {
@@ -40,7 +47,7 @@ class CommentListReactive extends Component {
         return (
             <div>
                 <div className="add-comments">
-                    <AutoForm onSubmit={this.submit} schema={CommentSchema} model={model}>
+                    <AutoForm onSubmit={this.submit} schema={CommentSchema} model={model} ref={ref => this.form = ref}>
                         <LongTextField name="text" />
                         <ErrorsField />
                         <SubmitField value="Add Comment" />
@@ -51,8 +58,9 @@ class CommentListReactive extends Component {
                         return (
                             <div key={comment._id}>
                                 <p>comment text: {comment.text}</p>
-                                <button onClick={() => this.remove(comment._id)}> Remove comment
-                                </button>
+                                <p>comment author: {comment.author}</p>
+
+                                {this.canRemove(comment.userId) ? <button onClick={() => this.remove(comment._id)}> Remove comment</button> : null}
                             </div>
                         )
                     }) : <div>No Comments For Post</div>}
@@ -66,9 +74,16 @@ class CommentListReactive extends Component {
 export default withTracker(props => {
     const { postId } = props;
     const handle = Meteor.subscribe('comments', { postId });
+    let comments = Comments.find({ postId }).fetch();
+    comments = comments.map((comment) => {
+        return {
+            ...comment,
+            author: Users.findOne(comment.userId).emails[0].address
+        };
+    });
     return {
         loading: !handle.ready(),
-        comments: Comments.find({ postId }).fetch(),
+        comments,
         ...props
     };
 })(CommentListReactive);

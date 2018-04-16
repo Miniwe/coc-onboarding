@@ -1,5 +1,6 @@
-import {Meteor} from 'meteor/meteor'
-import {Posts} from '/db';
+import { Meteor } from 'meteor/meteor'
+import { Posts } from '/db';
+import { Comments } from '/db';
 
 Meteor.methods({
     'post.create'(post) {
@@ -24,6 +25,7 @@ Meteor.methods({
 
     'post.remove' (_id){
         Posts.remove(_id);
+        Comments.remove({ postId: _id });
     },
 
     'post.get' (_id) {

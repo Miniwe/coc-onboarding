@@ -13,9 +13,25 @@ class PostView extends Component {
         });
     }
 
+    remove = () => {
+        const { history } = this.props;
+        Meteor.call('post.remove', this.props.match.params._id, (err) => {
+            if (err) {
+                return alert(err.reason);
+            } else {
+                alert('Post removed!')
+                history.push('/posts');
+            }
+        });
+    }
+
+    canRemove = (userId) => {
+        return Meteor.userId() === userId;
+    };
+
     render() {
-        const {history} = this.props;
-        const {post} = this.state;
+        const { history } = this.props;
+        const { post } = this.state;
 
         if (!post) {
             return <div>Loading....</div>
@@ -40,9 +56,10 @@ class PostView extends Component {
                     history.push("/posts/edit/" + post._id)
                 }}> Edit post
                 </button>
+                {this.canRemove(post.userId) ? <button onClick={this.remove}> Remove post</button> : null}
                 <button onClick={() => history.push('/posts')}>Back to posts</button>
 
-                <Comments postId={post._id} />
+                <Comments postId={post._id} postOwner={post.userId} />
             </div>
         );
     }
