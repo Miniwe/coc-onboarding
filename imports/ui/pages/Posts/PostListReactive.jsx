@@ -1,6 +1,6 @@
 import React from 'react';
-import {withTracker} from 'meteor/react-meteor-data';
-import {Posts} from '/db';
+import { withTracker } from 'meteor/react-meteor-data';
+import { Posts } from '/db';
 
 class PostListReactive extends React.Component {
     constructor() {
@@ -34,7 +34,6 @@ class PostListReactive extends React.Component {
         )
     }
 }
-
 
 export default withTracker(props => {
     const handle = Meteor.subscribe('posts');
