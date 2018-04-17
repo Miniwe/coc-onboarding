@@ -1,14 +1,7 @@
 import SimplSchema from 'simpl-schema';
 import uniforms from 'uniforms-unstyled';
 import SelectField from 'uniforms-unstyled/SelectField';
-
-const types = {
-    nature: 'Nature',
-    psychology: 'Psychology',
-    music: 'Music',
-    programming: 'Programming',
-    other: 'Project Management - Other'
-};
+import {PostTypesEnum, PostTypesLabels} from './enums/types';
 
 export default new SimplSchema({
     title: String,
@@ -24,16 +17,11 @@ export default new SimplSchema({
     },
     type: {
         type: String,
-        allowedValues: () => Object.keys(types),
+        allowedValues: () => Object.values(PostTypesEnum),
         uniforms: {
             component: SelectField,
             transform(id) {
-                // const res = {
-                //     value: id,
-                //     text: types[id]
-                // };
-                // return res;
-                return types[id];
+                return PostTypesLabels[id];
             }
         },
         optional: true
