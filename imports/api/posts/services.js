@@ -1,5 +1,4 @@
 import { Posts } from '/db';
-import { Comments } from '/db';
 
 class PostsServices {
     static createPost(post) {
@@ -7,7 +6,11 @@ class PostsServices {
     }
 
     static list() {
-        return Posts.find().fetch();
+        // return Posts.find().fetch();
+        return Posts.createQuery({
+            title: 1,
+            description: 1
+        }).fetch();
     }
 
     static remove(postId) {

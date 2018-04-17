@@ -8,6 +8,8 @@ import PostView from './pages/Posts/PostView';
 import PostList from './pages/Posts/PostList';
 import PostListReactive from './pages/Posts/PostListReactive';
 
+import Grapher from './pages/Grapher/View';
+
 import Register from './pages/Users/Register';
 import Login from './pages/Users/Login';
 
@@ -20,6 +22,7 @@ export default () =>
         <Route exact path="/posts/edit/:_id" component={PostEdit} />
         <Route exact path="/posts/view/:_id" component={PostView} />
 
+        <Route exact path="/grapher" component={Grapher} />
 
         <Route exact path="/register" component={Register} />
         <Route exact path="/login" component={Login} />

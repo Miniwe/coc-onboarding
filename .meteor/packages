@@ -22,3 +22,6 @@ static-html
 aldeed:collection2-core
 react-meteor-data
 alanning:roles
+cultofcoders:grapher
+herteby:graphical-grapher
+cultofcoders:grapher-react

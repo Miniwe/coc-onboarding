@@ -52,10 +52,7 @@ class PostView extends Component {
                 UserId: {post.userId}
                 </p>
 
-                <button onClick={() => {
-                    history.push("/posts/edit/" + post._id)
-                }}> Edit post
-                </button>
+                <button onClick={() => history.push("/posts/edit/" + post._id)}> Edit post </button>
                 {this.canRemove(post.userId) ? <button onClick={this.remove}> Remove post</button> : null}
                 <button onClick={() => history.push('/posts')}>Back to posts</button>
 
