@@ -24,10 +24,11 @@ export default class PostList extends React.Component {
             <div className="post">
                 {
                     posts.map((post) => {
+                        console.log('post', post);
                         return (
                             <div key={post._id}>
                                 <p>Post id: {post._id} </p>
-                                <p>Post title: {post.title}, Post Description: {post.description} </p>
+                                <p>Post title: {post.title}, Post Description: {post.description}, Post User: {post.user ? post.user.emails[0].address : 'Anonimous'}</p>
                                 <button onClick={() => {
                                     history.push("/posts/edit/" + post._id)
                                 }}> Edit post

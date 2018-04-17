@@ -39,17 +39,18 @@ class PostView extends Component {
 
         return (
             <div key={post._id}>
-                <p>Post id: {post._id} </p>
                 <p>
-                Post title: {post.title},
-                <br />
-                Post Description: {post.description}
-                <br />
-                Post Type: {post.type}
-                <br />
-                Post Views: {post.views}
-                <br />
-                UserId: {post.userId}
+                    Post id: {post._id}
+                    <br />
+                    Post title: {post.title},
+                    <br />
+                    Post Description: {post.description}
+                    <br />
+                    Post Type: {post.type}
+                    <br />
+                    Post Views: {post.views}
+                    <br />
+                    UserId: {post.userId}
                 </p>
 
                 <button onClick={() => history.push("/posts/edit/" + post._id)}> Edit post </button>

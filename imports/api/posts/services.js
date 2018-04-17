@@ -9,7 +9,13 @@ class PostsServices {
         // return Posts.find().fetch();
         return Posts.createQuery({
             title: 1,
-            description: 1
+            description: 1,
+            user: {
+                emails: 1
+            },
+            comments: {
+                _id: 1
+            }
         }).fetch();
     }
 
