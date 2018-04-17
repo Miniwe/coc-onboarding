@@ -1,17 +1,19 @@
-import {Meteor} from 'meteor/meteor'
-import {Comments} from '/db';
+import { Meteor } from 'meteor/meteor'
+import CommentsServices from './services';
 
 Meteor.methods({
     'comment.create'(comment) {
-        comment.userId = this.userId;
-        Comments.insert(comment);
+        return CommentsServices.createComment({
+            ...comment,
+            userId: this.userId
+        });
     },
 
     'comment.list' () {
-        return Comments.find().fetch();
+        return CommentsServices.list();
     },
 
     'comment.remove' (_id){
-        Comments.remove(_id);
+        return CommentsServices.remove(_id);
     }
 });
