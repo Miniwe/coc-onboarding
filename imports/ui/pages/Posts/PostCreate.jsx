@@ -1,3 +1,4 @@
+import { Meteor } from "meteor/meteor";
 import React from 'react';
 import {AutoForm, AutoField, LongTextField, SelectField, SubmitField, ErrorsField} from 'uniforms-unstyled';
 import PostSchema from '/db/posts/schema';

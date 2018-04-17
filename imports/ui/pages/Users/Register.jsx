@@ -1,3 +1,4 @@
+import { Meteor } from "meteor/meteor";
 import React, {Component} from 'react';
 import {AutoForm, AutoField, ErrorsField} from 'uniforms-unstyled';
 import SimpleSchema from 'simpl-schema';

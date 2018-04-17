@@ -1,3 +1,4 @@
+import { Meteor } from "meteor/meteor";
 import React from 'react';
 
 export default class PostList extends React.Component {
@@ -24,7 +25,6 @@ export default class PostList extends React.Component {
             <div className="post">
                 {
                     posts.map((post) => {
-                        console.log('post', post);
                         return (
                             <div key={post._id}>
                                 <p>Post id: {post._id} </p>

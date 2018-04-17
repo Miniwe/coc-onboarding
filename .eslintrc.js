@@ -25,10 +25,12 @@ module.exports = {
         }],
         "react/jsx-no-bind": [2, {
             "ignoreRefs": false,
-            "allowArrowFunctions": false,
+            "allowArrowFunctions": true,
             "allowFunctions": false,
             "allowBind": false
         }],
+        "react/display-name": 0,
+        "react/prop-types": 0,
         "max-len": [0, {code: 100}],
         "import/no-absolute-path": [0],
         "meteor/audit-argument-checks": [0],
@@ -38,7 +40,7 @@ module.exports = {
         "new-cap": [1],
         "no-trailing-spaces": [2, {
             skipBlankLines: true
-        }],
+        }]
     },
     "overrides": {
         files: "*.js,*.jsx",

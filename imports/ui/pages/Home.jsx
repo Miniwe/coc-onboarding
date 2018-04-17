@@ -1,3 +1,4 @@
+import { Meteor } from "meteor/meteor";
 import React from 'react';
 import { AutoForm, AutoField } from 'uniforms-unstyled';
 import SimpleSchema from 'simpl-schema';
@@ -16,11 +17,10 @@ export default class Home extends React.Component {
     };
 
     submit = (data) => {
-        Meteor.call('method.checkString', data.myValue, (err, result) => {
+        Meteor.call('method.checkString', data.myValue, (err) => {
             if(err) {
                 return alert(err.details);
             }
-            console.log(result);
         });
     };
 
