@@ -2,8 +2,15 @@
   "name": "meteor-tuts",
   "private": true,
   "scripts": {
-    "start": "meteor run"
+    "start": "meteor run --settings settings.json",
+    "test": "meteor test --driver-package practicalmeteor:mocha --settings settings.json",
+    "lint": "eslint . --ext .jsx --fix"
   },
+  "lint-staged": {
+    "*.js": "eslint --fix",
+    "*.jsx": "eslint --fix"
+  },
+  "pre-commit": "lint-staged",
   "dependencies": {
     "@babel/runtime": "^7.0.0-beta.36",
     "bcrypt": "^1.0.3",
